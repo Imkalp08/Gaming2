@@ -1,0 +1,64 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'game-slider.css' | asset_url | stylesheet_tag }}
+  <div class="slider-container page-width">
+     <h2> {{ section.settings.heading | escape }}</h2>
+<slider-component class="slider-mobile-gutter">
+   <ul id="game-media_gallary" class="product__media-list grid grid--peek list-unstyled slider slider--mobile" role="list">
+      {%- for block in section.blocks -%}
+      <li class="product__media-item grid__item slider__slide"  data-media-id="{{ section.id }}-{{ media.id }}">
+        <a href="{{ block.settings.logo_url }}"><img class="slide-image" src="{{ block.settings.logo_image | img_url }}" alt="{{ block.settings.game_logo_name }}"></a>
+       </li>
+      {% endfor %}
+</ul>
+        <div class="slider-buttons slider-buttons--overlay no-js-hidden{% if section.blocks.size < 2 %} small-hide{% endif %}">
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon-caret' %}</button>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon-caret' %}</button>
+        </div>
+</slider-component>
+</div>
+{% schema %}
+{
+  "name": "Game Logo",
+  "class": "featured-game",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "placeholder": "Heading",
+      "info": "Heading Title",
+       "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "game",
+      "name": "Game logo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "game_logo_name",
+          "placeholder": "Logo Name",
+          "info": "Logo Name",
+          "default": "Logo Name",
+           "label": "Game Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Game Image"
+        },
+        {
+          "type": "url",
+          "id": "logo_url",
+          "label": "Logo URL"
+        }
+      ]
+    }
+  ],
+ "presets": [
+    {
+      "name": "Game Logo"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+<div class=" faq_genral_section">
+  <div class="rich-text page-width">
+    {% render 'breadcum' %}
+  <div class="rich-text__blocks">
+          <h5 class="rich-text__text rte">{{ section.settings.heading_sub }}</h5>
+          <h2 class="h1">{{ section.settings.heading_title | escape }}</h2>
+  </div>
+</div>
+</div>
+<div class="tabs page-width faq_genral">
+  {% assign count = 0 %}
+   {%- for block in section.blocks -%}
+     {%- case block.type -%}
+      {%- when 'question' -%}
+      {% assign count = count | plus: 1 %}
+      <div class="tab">
+        <input type="checkbox" id="check_{{ count }}">
+        <label class="tab-label" for="check_{{ count }}">{{ block.settings.title | escape }}</label>
+        <div class="tab-content">
+          {{ block.settings.answer }}
+        </div>
+      </div>
+    {%- endcase -%}
+ {%- endfor -%}
+</div>
+
+{% schema %}
+  {
+    "name": "General Questions",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "expand_questions",
+        "label": "Expand all questions by default",
+        "default": false
+       },
+{
+          "type": "text",
+          "id": "heading_sub",
+          "label": "Content"
+        },
+ {
+          "type": "text",
+          "id": "heading_title",
+          "default": "Faq",
+          "label": "t:sections.image-with-text.blocks.heading.settings.heading.label"
+        }
+  ],
+    "blocks": [
+      {
+        "type": "separator",
+        "name": "Section separator",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading"
+          }
+        ]
+      },
+      {
+        "type": "question",
+        "name": "Question",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Question"
+          },
+          {
+            "type": "richtext",
+            "id": "answer",
+            "label": "Answer"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

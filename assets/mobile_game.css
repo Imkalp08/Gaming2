@@ -1,0 +1,112 @@
+#shopify-section-mobile_game .image-with-text__media img{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: auto;
+    width: auto;
+}
+.image-with-text--full-width{
+    background-color: #edf2f4;
+}
+.image-with-text__content {
+    padding: 6rem 7rem 7rem;
+}
+.image-with-text .grid {
+ margin-left: 0;
+    margin-bottom: 0;
+    padding: 5% 0;
+    margin: 0 auto;
+}
+.sub_heading_txt{
+    text-align: left;
+    font: normal normal bold 20px/27px sans-serif;
+    letter-spacing: 3px;
+    color: #2B2D42;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 10px 0;
+}
+.image-with-text__heading{
+text-align: left;
+    font: normal normal bold 60px/72px sans-serif;
+    letter-spacing: 0px;
+    color: #F70E0E;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+.video .title_sub_vid{
+    text-align: center;
+    font: normal normal bold 20px/27px sans-serif;
+    letter-spacing: 3px;
+    color: #2B2D42;
+}
+.video .title_vid{
+    text-align: center;
+    letter-spacing: 0px;
+    color: #F70E0E;
+    margin: 0;
+    margin-bottom: 50px;
+    color: #F70E0E;
+    text-transform: uppercase;
+    font-family: 'sans-serif';
+    font-size: 46px;
+    font-weight: 800;
+}
+.video .video_ifrmae iframe{
+    border-radius: 30px;
+}
+.video {
+    padding: 15px 0;
+}
+#shopify-section-newsletter .image-with-text {
+    background-color: #fff;
+}
+
+#shopify-section-newsletter .media{
+background-color: #fff;
+}
+#shopify-section-mobile_game .image-with-text .grid 
+{
+    margin-left: 0;
+    margin-bottom: 0;
+    padding: 5% 0;
+    margin: 0 auto;
+}
+#shopify-section-mobile_game .banner_button{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  
+ 
+}
+#shopify-section-mobile_game .banner_button a.button {
+    border: 0;
+    box-shadow: none;
+       padding: 0;
+    padding-right: 50px;
+    padding-top: 10px;
+}
+.img_text_content{
+    text-align: left;
+    font: normal normal normal 18px/24px sans-serif;
+    letter-spacing: 0.27px;
+    color: #2B2D42;
+    padding: 10px 0;
+}
+#shopify-section-mobile_game .banner_button a.button img{
+height: 50px;
+    width: 100%;
+}
+@media screen and (max-width: 767px)
+{
+  #shopify-section-mobile_game .image-with-text__media img{
+      width: 100%;
+  }
+  .image-with-text__heading{
+      font: normal normal bold 38px/44px sans-serif;
+  }
+  .image-with-text__content {
+    padding: 10px;
+}
+}

@@ -1,0 +1,241 @@
+<link rel="stylesheet" href="{{ 'section-recall.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="recall_sections  page-width">
+      <div class="sidebar_section">
+        <div class="section_title active">
+          <a href="#step1" class="step_section " >{{ section.settings.recall_title }}</a>
+        </div>
+        <div class="section_title">
+          <a href="#step2" class="step_section" >{{ section.settings.photos_title }}</a>
+        </div>
+        <div class="section_title">
+          <a href="#step3" class="step_section" >{{ section.settings.footer_title }}</a>
+        </div>
+        </div>
+  <div class="content_section_main"> 
+      <div class="content_section sumary recall_bkg"> 
+              <div class="image-with-text__media image-with-text__media--large media" >
+        {%- if section.settings.image != blank -%}
+          <img srcset="{%- if section.settings.image_step1.width >= 165 -%}{{ section.settings.image | img_url: '165x' }} 165w,{%- endif -%}
+            {%- if section.settings.image.width >= 360 -%}{{ section.settings.image | img_url: '360x' }} 360w,{%- endif -%}
+            {%- if section.settings.image.width >= 535 -%}{{ section.settings.image | img_url: '535x' }} 535w,{%- endif -%}
+            {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+            {%- if section.settings.image.width >= 940 -%}{{ section.settings.image | img_url: '940x' }} 940w,{%- endif -%}
+            {%- if section.settings.image.width >= 1070 -%}{{ section.settings.image | img_url: '1070x' }} 1070w{%- endif -%}"
+            src="{{ section.settings.image | img_url: '533x' }}"
+            sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+            alt="{{ section.settings.image.alt | escape }}"
+            loading="lazy"
+            width="520"
+            height="550"
+          >
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div> 
+        <div class="summary_text">
+          {{ section.settings.text }}
+        </div>
+        
+      </div>
+  {%- for block in section.blocks -%}
+  {%- case block.type -%}
+  {%- when 'recall' -%}
+        <div id="step1" class="recall_bkg step_recall">
+          <h3 class="heading">{{ block.settings.heading }}</h3>
+          <div class="summary_text">{{ block.settings.recall_txt }}</div>
+        </div>
+  {%- when 'photos' -%}
+   <div id="step2" class="recall_bkg step_recall photos">
+  <h3 class="heading">{{ block.settings.photos_heading }}</h3>
+         {%- if block.settings.photos_blog != blank  -%}
+             <ul class="blog__posts articles-wrapper" role="list">
+                {%- for article in block.settings.photos_blog.articles limit: block.settings.post_limit -%}
+            <li class="blog__post">
+              {% render 'photos_blog', blog: block.settings.photos_blog, article: article, show_image: block.settings.show_image %}
+            </li>
+          {%- endfor -%}
+             </ul>
+            {%- endif -%}
+          </div>
+  {%- when 'footer' -%}
+   <div id="step3" class="recall_bkg step_recall footer">
+    <h3 class="heading">{{ block.settings.heading_footer }}</h3>
+     <div class="summary_text">{{ block.settings.footer_txt }}</div>
+          </div>
+  {%- endcase -%}
+{%- endfor -%}
+    </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "recall",
+  "tag": "section",
+  "class": "spaced-section recall",
+    "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.rich-text.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.rich-text.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.rich-text.settings.color_scheme.options__3.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.rich-text.settings.color_scheme.options__4.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.rich-text.settings.color_scheme.options__5.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.rich-text.settings.color_scheme.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "t:sections.rich-text.settings.full_width.label"
+    },
+     {
+          "type": "text",
+          "id": "recall_title",
+          "default": "Talk about your brand",
+          "label": "Recall title"
+   },
+     {
+          "type": "text",
+          "id": "photos_title",
+          "default": "Talk about your brand",
+          "label": "Photos Title"
+   },
+     {
+          "type": "text",
+          "id": "footer_title",
+          "default": "Talk about your brand",
+          "label": "Footer Title"
+   },
+ {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+          "label": "t:sections.rich-text.blocks.text.settings.text.label"
+        },
+{
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.image-with-text.settings.image.label"
+    }
+
+  ],
+  "blocks": [ 
+    {
+      "type": "recall",
+      "name": "recall",
+      "limit": 1,
+      "settings": [
+         {
+          "type": "text",
+          "id": "heading",
+          "default": "Talk about your brand",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "recall_txt",
+           "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+          "label": "Recall Text"
+        }
+      
+      ]
+    },
+     
+    {
+      "type": "photos",
+      "name": "photos",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "photos_heading",
+          "default": "Talk about your brand",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+        },
+       {
+              "type": "blog",
+              "id": "photos_blog",
+            "label": "Featured blog"
+       },
+   {
+      "type": "range",
+      "id": "post_limit",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.featured-blog.settings.post_limit.label"
+    },  {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_image.label",
+      "info": "t:sections.featured-blog.settings.show_image.info"
+    }
+        
+      ]
+    },
+    {
+      "type": "footer",
+      "name": "footer",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading_footer",
+          "default": "Talk about your brand",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "footer_txt",
+           "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+          "label": "Recall Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "recall",
+      "blocks": [
+        {
+          "type": "recall"
+        },
+        {
+          "type": "photos"
+        },
+        {
+          "type": "footer"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

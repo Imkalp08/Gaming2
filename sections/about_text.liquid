@@ -1,0 +1,35 @@
+<div class="rich-text rich-text--full-width  color">
+  <div class="rich-text__blocks page-width">
+    <h4>{{section.settings.sub_heading}}</h4>
+     <h2> {{ section.settings.heading | escape }}</h2>
+       <div class="rich-text__text rte">{{ section.settings.desc }}</div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "About text",
+  "class": "about-text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "placeholder": "Sub Text",
+      "default": "Sub Text",
+     "label": "t:sections.rich-text.settings.full_width.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "placeholder": "Heading",
+      "default": "Heading",
+     "label": "t:sections.rich-text.settings.full_width.label"
+    },
+    {
+      "type": "textarea",
+      "id": "desc",
+      "default": "Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.",
+        "label": "t:sections.rich-text.blocks.text.settings.text.label"
+    }
+  ]
+}
+{% endschema %}

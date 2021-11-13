@@ -1,0 +1,96 @@
+{{ 'component-video.css' | asset_url | stylesheet_tag }}
+{%- for block in section.blocks -%}
+<div class="rich-text video rich-text--full-width page-width">
+  <div class="rich-text__blocks">
+     <h3 class="title_sub_vid">{{ block.settings.title_sub_vid | escape }}</h3>
+     <h2 class="h1 title_vid">{{ block.settings.vid_title | escape }}</h2>
+    <div class="video_ifrmae">
+    <iframe width="100%" height="550" src="https://www.youtube.com/embed/{{ block.settings.product_description_video.id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "Video",
+  "tag": "section",
+  "class": "spaced-section video_section spaced-section--full-width",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.rich-text.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.rich-text.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.rich-text.settings.color_scheme.options__3.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.rich-text.settings.color_scheme.options__4.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.rich-text.settings.color_scheme.options__5.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.rich-text.settings.color_scheme.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "t:sections.rich-text.settings.full_width.label"
+    }
+  ],
+  "blocks": [ 
+         {
+			"type": "video",
+			"name": "Video",
+			"settings": [ 
+                {
+                "type": "video_url",
+                "id": "product_description_video",
+                "label": "video",
+                "accept": [
+                "youtube",
+                "vimeo"
+                ]
+                },
+				{
+					"type": "text",
+					"id": "vid_title",
+					"default": "Title",
+					"label": "Title"
+				},
+				{
+					"type": "text",
+					"id": "title_sub_vid",
+					"default": "Sub Title",
+					"label": "Text"
+				}
+               
+			]
+		}
+  ],
+  "presets": [
+    {
+      "name": "Video",
+      "blocks": [ 
+        {
+          "type": "video"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

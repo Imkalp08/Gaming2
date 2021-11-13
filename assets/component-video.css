@@ -1,0 +1,21 @@
+.video_section .title_vid{
+    text-align: center;
+    font: normal normal bold 50px/60px sans-serif;
+    letter-spacing: 0px;
+    color: #F70E0E;
+    text-transform: uppercase;
+      margin-top: 0;
+}
+.video_section .title_sub_vid{
+    text-align: center;
+    font: normal normal bold 20px/27px sans-serif;
+    letter-spacing: 2px;
+    color: #2B2D42;
+}
+.video_section iframe{
+ 
+    border-radius: 30px;
+}
+#shopify-section-template--14901056176303__162865415690cf0daf{
+    padding-bottom: 5%;
+}
